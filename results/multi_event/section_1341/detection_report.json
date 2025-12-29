@@ -1,0 +1,14 @@
+{
+  "section_id": 1341,
+  "labeled_time": "2020-08-31 07:14:00+00:00",
+  "first_detection": "2020-08-31 06:14:50+00:00",
+  "latency_minutes": -59.166666666666664,
+  "n_energy_events": 11,
+  "n_subspace_events": 6,
+  "spatial_agreement": 0.9992673992673993,
+  "false_alarm_rate": 9.9,
+  "terminals_processed": [
+    207,
+    315
+  ]
+}

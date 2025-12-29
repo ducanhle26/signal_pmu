@@ -1,11 +1,11 @@
 # Project Status Summary
 
-## 🎉 Phase 1-5 Complete
+## 🎉 Phase 1-6 Complete
 
 **Date**: 2025-12-29  
 **Duration**: Single session  
 **Tests**: 80/80 passing  
-**Pilot**: SectionID 80 analysis + validation + reporting complete
+**Multi-Event**: 7 events analyzed, 71.4% detection rate
 
 ---
 
@@ -67,8 +67,26 @@ Coverage: Data loading, preprocessing, modeling, detection, metrics, validation,
 
 ## Next Phase Recommendations
 
-1. **Phase 6 (Extension)**: Multi-event pipeline for all 14 events
-2. **Phase 5 Complete**: Ready for IEEE TSG submission!
+1. **Phase 7 (Refinement)**: Improve 138kV detection performance
+2. **Publication Ready**: IEEE TSG figures and tables complete!
+
+---
+
+## Phase 6 Results (Multi-Event)
+
+| Metric | Value |
+|--------|-------|
+| **Events Analyzed** | 7 |
+| **Detection Rate** | 71.4% (5/7) |
+| **Mean Latency** | -12.7 min |
+| **False Alarm Rate** | 0/hour |
+
+### By Voltage Level
+| Voltage | Detection Rate | Mean Latency |
+|---------|---------------|--------------|
+| 69kV | 100% (1/1) | +23.5 min |
+| 138kV | 33% (1/3) | -24.8 min |
+| 161kV | 100% (3/3) | -20.8 min |
 
 ---
 
@@ -80,7 +98,10 @@ Coverage: Data loading, preprocessing, modeling, detection, metrics, validation,
 - **run_pilot_detection.py** - Phase 3 runner
 - **run_pilot_validation.py** - Phase 4 runner
 - **run_pilot_report.py** - Phase 5 runner
-- **results/pilot_section80/** - All outputs
+- **run_all_events.py** - Phase 6 multi-event runner
+- **run_multi_event_figures.py** - Phase 6 figures
+- **results/pilot_section80/** - Pilot outputs
+- **results/multi_event/** - Multi-event outputs + figures
 
 ---
 
