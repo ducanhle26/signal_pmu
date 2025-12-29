@@ -1,0 +1,15 @@
+Timestamp,SectionID,time,Event_Location,Cause,TermID,Terminal,Substation,Voltage,Latitude,Longitude
+8/31/20 22:57,80,10:57:00 PM,69KV Fixico 8 to Forest Hill 12 to Maud Tap 9,Lightning - Storms in the area.,249,Fixico-Forest Hills/Maud Tap,Fixico,69000,35.245444,-96.672538
+8/31/20 22:57,80,10:57:00 PM,69KV Fixico 8 to Forest Hill 12 to Maud Tap 9,Lightning - Storms in the area.,252,Maud Tap-Fixico/Forest Hill,Maud Tap,69000,35.131121,-96.808123
+8/31/20 22:57,80,10:57:00 PM,69KV Fixico 8 to Forest Hill 12 to Maud Tap 9,Lightning - Storms in the area.,372,Forest Hills-Fixico/Maud Tap,Forest Hills,69000,35.246743,-96.95289
+8/31/20 22:29,1035,10:29:56 PM,"138KV Division 181, 182 to Hefner 111, 112",Lightning,12,Division-Hefner,Division,138000,35.551585,-97.668163
+8/31/20 22:29,1035,10:29:56 PM,"138KV Division 181, 182 to Hefner 111, 112",Lightning,218,Hefner-Division,Hefner,138000,35.544878,-97.593006
+8/31/20 23:46,1197,11:46:25 PM,"138KV Ketch T116, T117 to Skyline 107",Lightning - Storms in the area.,462,Ketch-Skyline,Ketch,138000,35.6681702,-97.50572151
+8/31/20 7:14,1341,7:14:50 AM,"161KV Oak Park 113 to VBI 184, 185",Lightning - Storms in area,207,Oak Park-VBI,Oak Park,161000,35.428611,-94.388333
+8/31/20 7:14,1341,7:14:50 AM,"161KV Oak Park 113 to VBI 184, 185",Lightning - Storms in area,315,VBI-Oak Park,VBI,161000,35.472111,-94.338142
+8/31/20 23:41,1476,11:41:04 PM,"138KV Division 183, 184 to Northwest 119, 189",Lightning - Storms in the area.,15,Division-Northwest,Division,138000,35.551585,-97.668163
+8/31/20 23:41,1476,11:41:04 PM,"138KV Division 183, 184 to Northwest 119, 189",Lightning - Storms in the area.,50,Northwest-Division,Northwest,138000,35.63643,-97.64549
+8/31/20 7:10,1625,7:10:49 AM,"161KV Barling 107 to Fort Smith 182, 183",Lightning - Storms going through area.,28,Fort Smith-Barling,Fort Smith,161000,35.3,-94.43031
+8/31/20 7:10,1625,7:10:49 AM,"161KV Barling 107 to Fort Smith 182, 183",Lightning - Storms going through area.,304,Barling-Fort Smith,Barling,161000,35.326529,-94.324359
+8/31/20 7:07,1626,7:07:51 AM,"161KV Fort Smith 108, 109 to Massard 107",Lightning - Storms going through area,29,Fort Smith-Massard,Fort Smith,161000,35.3,-94.43031
+8/31/20 7:07,1626,7:07:51 AM,"161KV Fort Smith 108, 109 to Massard 107",Lightning - Storms going through area,321,Massard-Fort Smith,Massard,161000,35.357875,-94.334808
