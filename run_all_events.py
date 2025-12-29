@@ -11,6 +11,7 @@ import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -284,27 +285,71 @@ def process_single_event(
         if single_terminal_mode:
             # Single terminal: use direct detection without spatial voting
             term_id = list(analysis_results.keys())[0]
-            energy_flags = energy_anomalies[term_id]
-            subspace_flags = subspace_anomalies[term_id]
+            energy_flags_df = energy_anomalies[term_id]  # DataFrame with is_anomaly column
+            subspace_flags_df = subspace_anomalies[term_id]  # DataFrame with is_anomaly column
+            
+            # Extract the binary flags (Series)
+            energy_flags = energy_flags_df['is_anomaly'].values if isinstance(energy_flags_df, pd.DataFrame) else energy_flags_df
+            subspace_flags = subspace_flags_df['is_anomaly'].values if isinstance(subspace_flags_df, pd.DataFrame) else subspace_flags_df
             
             # Get timestamps from the processed terminal's results
             term_results = analysis_results[term_id]
             excitation_df = term_results["excitation"]
             subspace_df = term_results["subspace_dist"]
             
-            # Extract events from energy anomalies
-            energy_events = extract_event_intervals(
-                energy_flags, 
-                excitation_df["window_start"] if "window_start" in excitation_df.columns else excitation_df.index,
-                min_gap_windows=10
-            )
+            # Manually extract events from binary flags
+            energy_events = []
+            if energy_flags.sum() > 0:
+                # Find contiguous regions
+                anomaly_indices = np.where(energy_flags > 0)[0]
+                if len(anomaly_indices) > 0:
+                    # Group contiguous indices
+                    splits = np.where(np.diff(anomaly_indices) > 1)[0] + 1
+                    regions = np.split(anomaly_indices, splits)
+                    
+                    for i, region in enumerate(regions):
+                        if len(region) >= 3:  # min_duration_windows
+                            start_idx = region[0]
+                            end_idx = region[-1]
+                            if "window_start" in excitation_df.columns:
+                                start_time = excitation_df.iloc[start_idx]["window_start"]
+                                end_time = excitation_df.iloc[end_idx]["window_start"]
+                            else:
+                                start_time = excitation_df.index[start_idx]
+                                end_time = excitation_df.index[end_idx]
+                            
+                            energy_events.append({
+                                'event_id': i + 1,
+                                'start_time': start_time,
+                                'end_time': end_time,
+                                'n_windows': len(region)
+                            })
             
-            # Extract events from subspace anomalies  
-            subspace_events = extract_event_intervals(
-                subspace_flags,
-                subspace_df["window_start"] if "window_start" in subspace_df.columns else subspace_df.index,
-                min_gap_windows=10
-            )
+            # Extract subspace events similarly
+            subspace_events = []
+            if subspace_flags.sum() > 0:
+                anomaly_indices = np.where(subspace_flags > 0)[0]
+                if len(anomaly_indices) > 0:
+                    splits = np.where(np.diff(anomaly_indices) > 1)[0] + 1
+                    regions = np.split(anomaly_indices, splits)
+                    
+                    for i, region in enumerate(regions):
+                        if len(region) >= 3:
+                            start_idx = region[0]
+                            end_idx = region[-1]
+                            if "window_start" in subspace_df.columns:
+                                start_time = subspace_df.iloc[start_idx]["window_start"]
+                                end_time = subspace_df.iloc[end_idx]["window_start"]
+                            else:
+                                start_time = subspace_df.index[start_idx]
+                                end_time = subspace_df.index[end_idx]
+                            
+                            subspace_events.append({
+                                'event_id': i + 1,
+                                'start_time': start_time,
+                                'end_time': end_time,
+                                'n_windows': len(region)
+                            })
             
             spatial_agreement = 1.0  # Single terminal = 100% "agreement"
             logger.info(f"    Single-terminal detection: {len(energy_events)} energy, {len(subspace_events)} subspace events")

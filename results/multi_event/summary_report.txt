@@ -5,28 +5,27 @@ PHASE 6: MULTI-EVENT ANALYSIS SUMMARY
 OVERALL STATISTICS
 --------------------------------------------------
 Total events analyzed: 7
-Events with detections: 6
-Detection rate: 85.7%
+Events with detections: 7
+Detection rate: 100.0%
 
 LATENCY DISTRIBUTION (minutes from label)
 --------------------------------------------------
-Mean: -37.9
-Median: -55.0
-Std Dev: 29.8
+Mean: -40.6
+Median: -56.6
+Std Dev: 28.4
 Range: [-59.2, +23.5]
 
 BREAKDOWN BY VOLTAGE LEVEL
 --------------------------------------------------
-  0kV: 0/1 detected
   69kV: 1/1 detected (100%), latency=23.5±nan min
-  138kV: 2/2 detected (100%), latency=-40.8±22.5 min
+  138kV: 3/3 detected (100%), latency=-46.2±18.5 min
   161kV: 3/3 detected (100%), latency=-56.4±2.8 min
 
 PER-EVENT RESULTS
 --------------------------------------------------
   [✓] Section 80 (69kV): latency=+23.5 min, agreement=99.6%
   [✓] Section 1035 (138kV): latency=-24.8 min, agreement=99.9%
-  [✗] Section 1197 (0kV): latency=N/A, agreement=0.0%
+  [✓] Section 1197 (138kV): latency=-57.1 min, agreement=100.0%
   [✓] Section 1341 (161kV): latency=-59.2 min, agreement=99.9%
   [✓] Section 1476 (138kV): latency=-56.7 min, agreement=96.8%
   [✓] Section 1625 (161kV): latency=-56.6 min, agreement=99.9%
@@ -34,6 +33,6 @@ PER-EVENT RESULTS
 
 FAILED EVENTS
 --------------------------------------------------
-  Section 1197: extract_event_intervals() got an unexpected keyword argument 'min_gap_windows'
+  None
 
 ======================================================================

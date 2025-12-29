@@ -1,7 +1,7 @@
 section_id,term_ids,voltage_kv,cause,labeled_time,n_energy_events,n_subspace_events,first_detection_time,latency_minutes,spatial_agreement,false_alarm_rate,processing_status,error_message
 80,"[249, 252, 372]",69000,Lightning - Storms in the area.,2020-08-31 22:57:00+00:00,2,0,2020-08-31 23:20:30+00:00,23.5,0.9962026813746861,0.0,success,
 1035,"[12, 218]",138000,Lightning,2020-08-31 22:29:00+00:00,3,3,2020-08-31 22:04:10+00:00,-24.833333333333332,0.9985855728429985,0.0,success,
-1197,[],0,,2025-12-29 19:46:06.639051+00:00,0,0,,,0.0,0.0,error,extract_event_intervals() got an unexpected keyword argument 'min_gap_windows'
+1197,[462],138000,Lightning - Storms in the area.,2020-08-31 23:46:00+00:00,5,1,2020-08-31 22:48:55+00:00,-57.083333333333336,1.0,6.3,success,
 1341,"[207, 315]",161000,Lightning - Storms in area,2020-08-31 07:14:00+00:00,11,6,2020-08-31 06:14:50+00:00,-59.166666666666664,0.9992673992673993,9.9,success,
 1476,"[15, 50]",138000,Lightning - Storms in the area.,2020-08-31 23:41:00+00:00,6,7,2020-08-31 22:44:20+00:00,-56.666666666666664,0.9680264608599779,4.05,success,
 1625,"[28, 304]",161000,Lightning - Storms going through area.,2020-08-31 07:10:00+00:00,10,6,2020-08-31 06:13:25+00:00,-56.583333333333336,0.9985714285714286,8.55,success,

@@ -1,20 +1,21 @@
 {
-  "analysis_time": "2025-12-29T13:46:18.049394",
+  "analysis_time": "2025-12-29T14:01:31.761241",
   "n_events_total": 7,
-  "n_events_detected": 6,
-  "detection_rate": 0.8571428571428571,
+  "n_events_detected": 7,
+  "detection_rate": 1.0,
   "latency_stats": {
-    "n_detected": 6,
+    "n_detected": 7,
     "n_total": 7,
-    "detection_rate": 0.8571428571428571,
-    "latency_mean_min": -37.875,
-    "latency_median_min": -55.04166666666667,
-    "latency_std_min": 29.826106744235304,
+    "detection_rate": 1.0,
+    "latency_mean_min": -40.61904761904763,
+    "latency_median_min": -56.583333333333336,
+    "latency_std_min": 28.419890794015448,
     "latency_min_min": -59.166666666666664,
     "latency_max_min": 23.5,
     "latencies": [
       23.5,
       -24.833333333333332,
+      -57.083333333333336,
       -59.166666666666664,
       -56.666666666666664,
       -56.583333333333336,
@@ -22,16 +23,6 @@
     ]
   },
   "voltage_breakdown": [
-    {
-      "voltage_kv": 0,
-      "n_events": 1,
-      "n_detected": 0,
-      "latency_mean": NaN,
-      "latency_std": NaN,
-      "agreement_mean": 0.0,
-      "far_mean": 0.0,
-      "detection_rate": 0.0
-    },
     {
       "voltage_kv": 69000,
       "n_events": 1,
@@ -44,12 +35,12 @@
     },
     {
       "voltage_kv": 138000,
-      "n_events": 2,
-      "n_detected": 2,
-      "latency_mean": -40.75,
-      "latency_std": 22.51,
-      "agreement_mean": 0.983,
-      "far_mean": 2.025,
+      "n_events": 3,
+      "n_detected": 3,
+      "latency_mean": -46.194,
+      "latency_std": 18.5,
+      "agreement_mean": 0.989,
+      "far_mean": 3.45,
       "detection_rate": 1.0
     },
     {
