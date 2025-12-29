@@ -38,7 +38,7 @@ def preprocess_pmu_signals(
     if interpolate_missing:
         n_nan_before = result.isna().sum().sum()
         result = result.interpolate(method='linear', limit_direction='both')
-        result = result.fillna(method='bfill').fillna(method='ffill')
+        result = result.bfill().ffill()
         n_nan_after = result.isna().sum().sum()
         
         if n_nan_before > 0:

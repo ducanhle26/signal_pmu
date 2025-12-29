@@ -1,0 +1,14 @@
+{
+  "analysis_time": "2025-12-29T01:12:11.085118",
+  "terminals": [
+    249,
+    252,
+    372
+  ],
+  "peak_excitation": {
+    "timestamp": "2020-08-31 23:03:55+00:00",
+    "energy": 3877707.701565677
+  },
+  "event_time_label": "2020-08-31 22:57:00 (unreliable)",
+  "baseline_period": "22:00-22:45"
+}

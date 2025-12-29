@@ -208,19 +208,13 @@ def extract_dynamic_subspace(
     # Center
     X_centered = X - X.mean(axis=0)
     
-    if method == 'pca':
-        pca = PCA(n_components=n_components)
-        pca.fit(X_centered)
-        basis = pca.components_.T
-        singular_values = np.sqrt(pca.explained_variance_)
-        
-    elif method == 'svd':
-        U, s, Vt = np.linalg.svd(X_centered, full_matrices=False)
-        basis = U[:, :n_components]
-        singular_values = s[:n_components] / np.sqrt(len(X_centered))
-    
-    else:
+    if method not in ['pca', 'svd']:
         raise ValueError(f"Unknown method: {method}")
+    
+    pca = PCA(n_components=n_components)
+    pca.fit(X_centered)
+    basis = pca.components_.T  # (n_features, n_components)
+    singular_values = np.sqrt(pca.explained_variance_)
     
     logger.info(f"Extracted {n_components} components via {method}")
     logger.info(f"Explained variance ratio: {singular_values / singular_values.sum()}")
@@ -257,9 +251,10 @@ def compute_subspace_distance(
         window = X[i:i + window_size]
         window_centered = window - window.mean(axis=0)
         
-        # Extract subspace for this window
-        U, _ = np.linalg.svd(window_centered, full_matrices=False)
-        window_basis = U[:, :baseline_basis.shape[1]]
+        # Extract subspace for this window using PCA
+        pca_window = PCA(n_components=baseline_basis.shape[1])
+        pca_window.fit(window_centered)
+        window_basis = pca_window.components_.T  # (n_features, n_components)
         
         # Compute distance
         if method == 'principal_angles':
@@ -269,8 +264,8 @@ def compute_subspace_distance(
             distance = np.sqrt(np.sum((np.arccos(np.clip(s, 0, 1)))**2))
         
         elif method == 'projection_error':
-            # Projection error
-            proj = window_basis @ window_basis.T @ baseline_basis
+            # Projection error: norm of component of baseline perpendicular to window
+            proj = (window_basis @ window_basis.T) @ baseline_basis
             distance = np.linalg.norm(baseline_basis - proj, 'fro')
         
         else:
