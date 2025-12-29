@@ -184,7 +184,7 @@ def run_pilot_report(config_path: str = "config/pilot_config.yaml") -> None:
     spatial_signal = energy_signal  # Use energy for spatial (simplified)
 
     # Create time index for metrics
-    metric_time_index = data.index[::150]  # Approximate: 300 sample window with 50% overlap
+    metric_time_index = energy_metric.index
 
     # Figure 1: Signal timeseries
     logger.info("  [1/6] Signal timeseries...")
