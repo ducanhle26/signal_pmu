@@ -33,11 +33,11 @@ from src.reporting.results import (
 
 # Import earlier phases
 from src.data_loader import load_pilot_data
-from src.topology import TopologyStore
+from src.topology import load_topology, get_event_info
 from src.preprocessing import preprocess_pmu_signals, select_analysis_channels
 from src.dynamic_models import fit_var_model, compute_residual_excitation, extract_dynamic_subspace, compute_subspace_distance
-from src.metrics.residual_energy import detect_excitation_anomalies
-from src.metrics.subspace_change import detect_subspace_anomalies
+from src.metrics.residual_energy import detect_excitation_anomalies, select_threshold
+from src.metrics.subspace_change import detect_subspace_anomalies, select_subspace_threshold
 
 logging.basicConfig(
     level=logging.INFO,
@@ -81,9 +81,9 @@ def run_pilot_report(config_path: str = "config/pilot_config.yaml") -> None:
     # =========================================================================
     logger.info("\n[1/4] Loading data and topology...")
     
-    topology = TopologyStore(data_cfg["topology_file"])
-    event_info = topology.get_event_info(pilot["section_id"])
-    labeled_time = pd.Timestamp(event_info["timestamp"])
+    topology = load_topology(data_cfg["topology_file"])
+    event_info = get_event_info(topology, pilot["section_id"])
+    labeled_time = pd.Timestamp(event_info["event_time"])
     logger.info(f"Labeled event time: {labeled_time}")
 
     # Load extracted data
@@ -120,7 +120,9 @@ def run_pilot_report(config_path: str = "config/pilot_config.yaml") -> None:
 
     metric_agreement = {}
     if metric_agreement_csv.exists():
-        metric_agreement = pd.read_csv(metric_agreement_csv).to_dict()
+        metric_agreement_df = pd.read_csv(metric_agreement_csv)
+        if not metric_agreement_df.empty:
+            metric_agreement = metric_agreement_df.iloc[0].to_dict()
         logger.info(f"✓ Loaded: {metric_agreement_csv}")
 
     sensitivity_df = pd.DataFrame()
@@ -148,21 +150,21 @@ def run_pilot_report(config_path: str = "config/pilot_config.yaml") -> None:
     baseline_data = channels.iloc[:baseline_end]
     
     var_model = fit_var_model(baseline_data, order=30, window_size=300)
-    residuals = var_model["residuals"]
+    residuals = var_model.residuals
 
     # Metrics
     energy_metric = compute_residual_excitation(
-        channels, var_model["model"], window_size=300, overlap=0.5
+        channels, var_model, window_size=300, overlap_ratio=0.5
     )
-    subspace_baseline = extract_dynamic_subspace(baseline_data, n_components=5, method="svd")
-    subspace_metric = compute_subspace_distance(channels, subspace_baseline, window_size=300)
+    subspace_baseline, _ = extract_dynamic_subspace(baseline_data, n_components=3, method="pca")
+    subspace_metric = compute_subspace_distance(channels, subspace_baseline, window_size=300, overlap_ratio=0.5)
 
     # Detections
-    energy_threshold = np.percentile(energy_metric[:baseline_end], 99)
-    energy_det = detect_excitation_anomalies(energy_metric, threshold=energy_threshold, persistence_k=3)
+    energy_threshold = select_threshold(energy_metric["energy"], percentile=99.0, baseline_end_idx=400)
+    energy_det = detect_excitation_anomalies(energy_metric["energy"], threshold=energy_threshold, persistence_k=3)
     
-    subspace_threshold = np.percentile(subspace_metric[:baseline_end], 95)
-    subspace_det = detect_subspace_anomalies(subspace_metric, threshold=subspace_threshold, persistence_k=2)
+    subspace_threshold = select_subspace_threshold(subspace_metric["distance"], percentile=95.0, baseline_end_idx=400)
+    subspace_det = detect_subspace_anomalies(subspace_metric["distance"], threshold=subspace_threshold, persistence_k=2)
 
     # Convert to binary signals
     energy_signal = np.zeros(len(energy_metric))

@@ -1,0 +1,109 @@
+{
+  "timestamp": "2025-12-29T02:07:39.949075",
+  "labeled_event_time": "2020-08-31T22:57:00+00:00",
+  "section_id": 80,
+  "terminals": [
+    249,
+    252,
+    372
+  ],
+  "time_alignment": {
+    "term_249": {
+      "energy_times": [],
+      "subspace_times": []
+    },
+    "term_252": {
+      "energy_times": [],
+      "subspace_times": []
+    },
+    "term_372": {
+      "energy_times": [],
+      "subspace_times": []
+    }
+  },
+  "metric_agreement": {
+    "term_249": {
+      "energy_vs_subspace": 0.2634989200863931,
+      "all_three": 0.0,
+      "at_least_two": 0.0
+    },
+    "term_252": {
+      "energy_vs_subspace": 0.0,
+      "all_three": 0.0,
+      "at_least_two": 0.0
+    },
+    "term_372": {
+      "energy_vs_subspace": 0.44836272040302266,
+      "all_three": 0.0,
+      "at_least_two": 0.0
+    }
+  },
+  "cross_terminal_agreement": {
+    "agreement_fraction": 0.014615384615384615,
+    "n_terminals": 3,
+    "n_terminals_required": 2,
+    "per_terminal_detections": {
+      "249": 228,
+      "252": 16,
+      "372": 103
+    }
+  },
+  "sensitivity_analysis": {
+    "thresholds_tested": [
+      {
+        "Energy_Threshold": 308408.07939825754,
+        "N_Energy_Detections": 432,
+        "Subspace_Threshold": 0.0015071682113428483,
+        "N_Subspace_Detections": 432
+      },
+      {
+        "Energy_Threshold": 308408.07939825754,
+        "N_Energy_Detections": 432,
+        "Subspace_Threshold": 0.0017857562057547955,
+        "N_Subspace_Detections": 216
+      },
+      {
+        "Energy_Threshold": 308408.07939825754,
+        "N_Energy_Detections": 432,
+        "Subspace_Threshold": 0.0023449773015541274,
+        "N_Subspace_Detections": 44
+      },
+      {
+        "Energy_Threshold": 396223.2108958353,
+        "N_Energy_Detections": 216,
+        "Subspace_Threshold": 0.0015071682113428483,
+        "N_Subspace_Detections": 432
+      },
+      {
+        "Energy_Threshold": 396223.2108958353,
+        "N_Energy_Detections": 216,
+        "Subspace_Threshold": 0.0017857562057547955,
+        "N_Subspace_Detections": 216
+      },
+      {
+        "Energy_Threshold": 396223.2108958353,
+        "N_Energy_Detections": 216,
+        "Subspace_Threshold": 0.0023449773015541274,
+        "N_Subspace_Detections": 44
+      },
+      {
+        "Energy_Threshold": 586438.9031253193,
+        "N_Energy_Detections": 44,
+        "Subspace_Threshold": 0.0015071682113428483,
+        "N_Subspace_Detections": 432
+      },
+      {
+        "Energy_Threshold": 586438.9031253193,
+        "N_Energy_Detections": 44,
+        "Subspace_Threshold": 0.0017857562057547955,
+        "N_Subspace_Detections": 216
+      },
+      {
+        "Energy_Threshold": 586438.9031253193,
+        "N_Energy_Detections": 44,
+        "Subspace_Threshold": 0.0023449773015541274,
+        "N_Subspace_Detections": 44
+      }
+    ]
+  }
+}
