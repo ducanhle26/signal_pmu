@@ -1,0 +1,22 @@
+pilot:
+  section_id: 80
+  date: "2020-08-31"
+  term_ids: [249, 252, 372]
+  start_hour: 22
+  end_hour: 0  # Next day (2020-09-01 00:00)
+  
+data:
+  raw_pmu_dir: "data/raw_pmu"
+  topology_file: "data/topology.csv"
+  
+extraction:
+  chunksize: 200000
+  columns: null  # Read all columns; set to specific list to reduce memory
+  dtype_map: {}
+  
+output:
+  results_dir: "results/pilot_section80"
+  save_extracted: true
+  
+logging:
+  level: "INFO"
