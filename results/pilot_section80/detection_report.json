@@ -1,0 +1,16 @@
+{
+  "labeled_event_time": "2020-08-31 22:57:00+00:00",
+  "energy_detection": {
+    "n_events": 2,
+    "first_event": "2020-08-31 23:20:30+00:00",
+    "first_event_minutes_from_label": 23.5,
+    "mean_agreement": 0.9962080772134153
+  },
+  "subspace_detection": {
+    "n_events": 0,
+    "first_event": null,
+    "first_event_minutes_from_label": null,
+    "mean_agreement": 0.9766449623896092
+  },
+  "analysis_time": "2025-12-29T01:17:12.179994"
+}
